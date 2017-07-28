@@ -22,7 +22,7 @@ from setuptools import setup
 
 DESCRIPTION = 'Electrostatics calculations and field line diagrams. Equipotential lines are included as well'
 
-VERSION = ''
+VERSION = '0.0.1'
 
 setup(
     name='electrostatics',
@@ -35,7 +35,7 @@ setup(
     license='GPL',
     keywords='',
     url='https://github.com/badphysics/electrostaticsandpotential.git',
-    download_url='https://github.com/badphysics/electrostaticsandpotential.git'+VERSION,
+    download_url='https://github.com/badphysics/electrostaticsandpotential.git/tarball/'+VERSION,
 
     install_requires=['numpy', 'scipy', 'matplotlib'],
 
