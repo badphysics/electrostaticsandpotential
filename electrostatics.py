@@ -121,7 +121,12 @@ def finalize_plot():
 # Classes
 
 class PointCharge:
-    """A point charge."""
+    """A point charge.  This constructs a point charge.
+        for example:
+            PointCharge(1.0e-10,[0,0])
+
+            This command constructs a point charge of charge 1.0e-10 C at the origin
+    """
 
     R = 0.01  # The effective radius of the charge
 
