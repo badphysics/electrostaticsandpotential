@@ -3,10 +3,6 @@
 
 # In[ ]:
 
-
-
-# Copyright 2016 Thomas J. Duck.
-# All rights reserved.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -247,7 +243,7 @@ class FieldLine:
 
         if linewidth == None:
             linewidth = matplotlib.rcParams['lines.linewidth']
-        
+
         x, y = zip(*self.x)
         pyplot.plot(x, y, '-k', linewidth=linewidth)
 
@@ -426,7 +422,7 @@ class Equipotentials:
         'x1' and 'x2'."""
         self.charges, self.X, self.Y = charges, X, Y
         self.type = 'Line'
-        
+
     def potential_grid(self):
         V = 0.0*self.X
         N=200
@@ -443,10 +439,10 @@ class Equipotentials:
 
                 V += k*charge.q/sqrt((self.X-charge.x[0])**2+(self.Y-charge.x[1])**2)
         return V
-    
+
     def potential_point(self,x,N=2000):
         V = 0
-        
+
         k=9e9
         for charge in self.charges:
             if charge.type == 'Point':
@@ -458,8 +454,8 @@ class Equipotentials:
                     V+=k*lam*dx/sqrt((charge.x1[0]+dx*i-x[0])**2+(x[1])**2)
         return V
 
-    
-    
+
+
 
 
 # In[ ]:
@@ -473,7 +469,7 @@ class Equipotentials:
 # Y,X = meshgrid(x,y)
 
 # charges2 = [LineCharge(1,[.5,0],[1.5,0]),PointCharge(-2,[-1,0])]
-  
+
 # M=20
 # vmin=-5
 # vmax=5
@@ -554,4 +550,3 @@ class Equipotentials:
 # #plt.clabel(CS, fontsize=3, inline=1)
 # cbar = plt.colorbar(CS)
 # plt.show()
-
