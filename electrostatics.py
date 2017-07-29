@@ -16,7 +16,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""electrostatics.py - classes for electrostatics problems"""
+"""electrostatics.py - classes for electrostatics problems
+
+classes:
+PointCharge
+LineCharge
+FieldLine
+ElectricField
+GaussianCircle
+Equipotentials
+"""
 import io, os, sys, types
 
 from IPython import get_ipython
@@ -136,7 +145,13 @@ class PointCharge:
         self.type = 'Point'
 
     def E(self, x):  # pylint: disable=invalid-name
-        """Electric field vector."""
+        """Electric field vector at a point x
+
+        use: charge.E([1,1])
+            gives the electric field at the point [1,1] due to charge where charge
+            is defined as a point charge
+
+        """
         if self.q == 0:
             return 0
         else:
@@ -144,7 +159,10 @@ class PointCharge:
             return (1.0/(4*pi*8.85e-12))*(self.q*dx.T/numpy.sum(dx**2, axis=-1)**1.5).T
 
     def V(self, x):  # pylint: disable=invalid-name
-        """Potential."""
+        """Potential due to a point charge
+
+            This function takes in a point x to evaluate the potential at
+        """
         k=9e9
         return k*self.q/norm(x-self.x)
 
@@ -174,7 +192,13 @@ class PointChargeFlatland(PointCharge):
 
 
 class LineCharge:
-    """A line charge."""
+    """A line charge.
+       Use:
+        LineCharge(1.0,[1,0],[2,0])
+
+        This produces a line of charge, 1.0 C, distributed uniformly from
+        [1,0] to [2,0].
+    """
 
     R = 0.01  # The effective radius of the charge
 
@@ -184,12 +208,15 @@ class LineCharge:
         self.q, self.x1, self.x2 = q, array(x1), array(x2)
         self.type = 'Line'
     def get_lam(self):
-        """Returns the total charge on the line."""
+        """Returns the charge density of the line."""
         return self.q / norm(self.x2 - self.x1)
     lam = property(get_lam)
 
     def E(self, x):  # pylint: disable=invalid-name
-        """Electric field vector.
+        """Electric field vector at a point x
+
+            Use:  LineCharge.E(x)
+
         Ref: http://www.phys.uri.edu/gerhard/PHY204/tsl31.pdf
         """
         x = array(x)
