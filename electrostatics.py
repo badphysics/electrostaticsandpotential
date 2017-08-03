@@ -118,12 +118,12 @@ def lininterp2(x1, y1, x):
 
 def finalize_plot():
     """Finalizes the plot."""
-    ax = pyplot.axes()
+    ax = plt.axes()
     ax.set_xticks([])
     ax.set_yticks([])
-    pyplot.xlim(XMIN/ZOOM+XOFFSET, XMAX/ZOOM+XOFFSET)
-    pyplot.ylim(YMIN/ZOOM, YMAX/ZOOM)
-    pyplot.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01)
+    plt.xlim(XMIN/ZOOM+XOFFSET, XMAX/ZOOM+XOFFSET)
+    plt.ylim(YMIN/ZOOM, YMAX/ZOOM)
+    plt.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01)
 
 
 #-----------------------------------------------------------------------------
@@ -277,18 +277,18 @@ class FieldLine:
             linewidth = matplotlib.rcParams['lines.linewidth']
 
         x, y = zip(*self.x)
-        pyplot.plot(x, y, '-k', linewidth=linewidth)
+        plt.plot(x, y, '-k', linewidth=linewidth)
 
         n = int(len(x)/2) if len(x) < 225 else 75
         if startarrows:
-            pyplot.arrow(x[n], y[n], (x[n+1]-x[n])/200., (y[n+1]-y[n])/200.,
+            plt.arrow(x[n], y[n], (x[n+1]-x[n])/200., (y[n+1]-y[n])/200.,
                          fc="k", ec="k",
                          head_width=0.1*linewidth, head_length=0.1*linewidth)
 
         if len(x) < 225 or not endarrows:
             return
 
-        pyplot.arrow(x[-n], y[-n],
+        plt.arrow(x[-n], y[-n],
                      (x[-n+1]-x[-n])/100., (y[-n+1]-y[-n])/100.,
                      fc="k", ec="k",
                      head_width=0.1*linewidth, head_length=0.1*linewidth)
@@ -387,7 +387,7 @@ class ElectricField:
             for j in range(x.shape[1]):
                 z[i, j] = log10(self.magnitude([x[i, j], y[i, j]]))
         levels = arange(nmin, nmax+0.2, 0.2)
-        cmap = pyplot.cm.get_cmap('plasma')
+        cmap = plt.cm.get_cmap('plasma')
 
         #pyplot.contourf(x, y, numpy.clip(z, nmin, nmax),
         #                10, cmap=cmap, levels=levels, extend='both')
